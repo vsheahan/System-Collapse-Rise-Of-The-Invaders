@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/Gemini_Generated_Image_t6nebgt6nebgt6ne.png" width="500" alt="System Collapse: Rise of the Invaders Logo">
+  <img src="assets/Gemini_Generated_Image_bvpuibbvpuibbvpu.png" width="500" alt="System Collapse: Rise of the Invaders Logo">
 </p>
 
 # System Collapse: Rise of the Invaders
