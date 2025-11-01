@@ -17,8 +17,8 @@
 **What did I build?** A stress testing framework that generates 200 different attack prompts and tests how many get caught. Think of it like a quality assurance system for AI security - throwing everything at it to see what sticks.
 
 **Did it reveal anything interesting?** Oh boy, yes:
-- My simple keyword detector: catches 19% of attacks, 9% false alarms (not great, but honest work)
-- My fancy ML detector: catches 27% of attacks, but 32% false alarms (I spent months on this)
+- My simple keyword detector: catches 19% of attacks, 9% false positives (not great, but honest work)
+- My fancy ML detector: catches 27% of attacks, but 32% false positives (I spent months on this)
 
 **The surprising finding:** The sophisticated ML system only caught 41% more attacks than simple keyword matching, while being 500x slower and requiring 6GB of dependencies. I built a Ferrari that goes 8mph faster than a bicycle. Sometimes complexity isn't worth it.
 
@@ -53,7 +53,7 @@ After stress testing with 200 adversarial prompts, here's what I found:
 
 1. **Simple heuristics aren't that bad**: 19% recall, < 1ms latency, minimal dependencies. Sometimes "grep for suspicious words" is... fine?
 2. **Sophisticated ≠ Better**: ML only 41% better than keywords (27% vs 19%), but 500x slower. I spent three months to beat regex by 8 percentage points.
-3. **False positives are a trade-off**: Better recall often means more false alarms. Pick your poison: miss attacks or annoy users.
+3. **False positives are a trade-off**: Better recall often means more false positives. Pick your poison: miss attacks or annoy users.
 
 ---
 
@@ -281,7 +281,7 @@ Outputs:
 ## What Didn't Work (Or: The List of My Disappointments)
 
 ❌ **Expected training performance**: Real-world 27% vs training 63% (gap too large, confidence too broken)
-❌ **FPR trade-off**: Better recall → higher false positives (32% FPR). Want to catch more attacks? Hope you like false alarms!
+❌ **FPR trade-off**: Better recall → higher false positives (32% FPR). Want to catch more attacks? Hope you like false positives!
 ❌ **High complexity**: Full detector needs 6GB, TinyLlama, complex setup. Barely better than keywords, infinitely more annoying to deploy.
 
 ---
@@ -368,28 +368,6 @@ Outputs:
 - Key insights
 
 ---
-
-
-## Future Improvements
-
-### Detector Enhancements
-- [ ] Add specific data exfiltration patterns
-- [ ] Train on adversarial test corpus attacks
-- [ ] Threshold tuning for better recall/FPR balance
-- [ ] Multi-turn context awareness
-
-### Framework Enhancements
-- [ ] Adaptive loop (mutate successful attacks)
-- [ ] Real-time monitoring dashboard
-- [ ] Export to SIEM formats (Splunk, ELK)
-- [ ] GPU acceleration for batch testing
-
-### Template Library
-- [ ] Cross-lingual attacks
-- [ ] Adversarial perturbations (TextFooler, BERT-Attack)
-- [ ] Tool-use injection attacks
-- [ ] Multi-modal attacks (if future detectors support images)
-
 ---
 
 ## On Fundamental Limitations (Or: Why This Was Probably Doomed From The Start)
