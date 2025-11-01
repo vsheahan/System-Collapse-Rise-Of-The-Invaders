@@ -54,7 +54,6 @@ After stress testing with 200 adversarial prompts, here's what I found:
 1. **Simple heuristics aren't that bad**: 19% recall, < 1ms latency, minimal dependencies
 2. **Sophisticated ≠ Better**: ML only 41% better than keywords (27% vs 19%), but 500x slower
 3. **False positives are a trade-off**: Better recall often means more false alarms
-4. **Blind spots are real**: Both detectors caught 0% of data exfiltration attacks
 
 ---
 
@@ -279,7 +278,6 @@ Outputs:
 ## What Didn't Work
 
 ❌ **Expected training performance**: Real-world 27% vs training 63% (gap too large)
-❌ **Detector blind spots**: 0% recall on data exfiltration, API stealth
 ❌ **FPR trade-off**: Better recall → higher false positives (32% FPR)
 ❌ **High complexity**: Full detector needs 6GB, TinyLlama, complex setup
 
@@ -420,10 +418,10 @@ Here's what I learned:
    - Now at 62.79% recall (Ensemble on SEP)
    - **33x improvement**, even if it's not perfect
 
-4. **Red Teaming Reveals Blind Spots**: Even with limited coverage, this found:
-   - Complete blindness to data exfiltration (0% recall)
+4. **Red Teaming Reveals Patterns**: Even with limited coverage, this found:
    - Massive stealth advantage (85% detection reduction)
    - Multi-turn context building (77.8% success rate)
+   - Novel attack techniques not well-represented in training data
 
 ### The Honest Truth
 
