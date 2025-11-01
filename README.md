@@ -10,7 +10,7 @@
 
 ---
 
-## TL;DR for Non-Technical Readers
+## TL;DR
 
 **What's this about?** After building three different systems to detect AI prompt attacks (one too aggressive, one too passive, one that actually worked), I wanted to know: *how well do they actually perform against real adversarial attacks?*
 
@@ -53,7 +53,7 @@ After stress testing with 200 adversarial prompts, here's what I found:
 
 **Key Findings:**
 
-1. **Simple heuristics aren't that bad**: 19% recall, < 1ms latency, easy to deploy
+1. **Simple heuristics aren't that bad**: 19% recall, < 1ms latency, minimal dependencies
 2. **ML detectors are brittle**: Wrong features → 0% recall. Integration matters!
 3. **Sophisticated ≠ Better**: ML only 41% better than keywords (27% vs 19%), but 500x slower
 4. **False positives are a trade-off**: Better recall often means more false alarms
@@ -261,7 +261,7 @@ Outputs:
 | Recall | 19.15% | 27.08% | +41% |
 | FPR | 9.43% | 31.73% | +236% (worse) |
 | Latency | < 1ms | ~500ms | 500x slower |
-| Deployment | Trivial | 6GB dependencies | Complex |
+| Complexity | Minimal | 6GB dependencies | Much higher |
 
 **Takeaway**: ML is only 41% better at catching attacks, but 3.4x worse at false positives. Trade-offs matter.
 
@@ -318,7 +318,7 @@ Outputs:
 ❌ **Expected training performance**: Real-world 27% vs training 63% (gap too large)
 ❌ **Detector blind spots**: 0% recall on data exfiltration, API stealth
 ❌ **FPR trade-off**: Better recall → higher false positives (32% FPR)
-❌ **Deployment complexity**: Full detector needs 6GB, TinyLlama, complex setup
+❌ **High complexity**: Full detector needs 6GB, TinyLlama, complex setup
 
 ---
 
@@ -423,35 +423,6 @@ Outputs:
 
 ---
 
-## Deployment Recommendations
-
-### For Research/Testing
-**Use**: Stub detector
-- **Pros**: Fast (< 1ms), no dependencies, easy to iterate
-- **Cons**: Lower recall (19%)
-- **When**: Rapid prototyping, framework testing
-
-### For Accuracy-Critical Applications
-**Use**: Full Ensemble detector
-- **Pros**: Best recall (27%), supervised learning
-- **Cons**: Slow (~500ms), complex setup, high FPR (32%)
-- **When**: Willing to accept false positives for better coverage
-
-### For Production (Recommended)
-**Use**: Hybrid approach
-```python
-# Fast path: stub detector (< 1ms)
-if stub_score < 0.3:
-    return "safe"  # 90% of prompts
-
-# Slow path: full detector (~500ms)
-return full_detector_score  # 10% of prompts
-```
-- **Pros**: Fast for most cases, accurate for suspicious ones
-- **Cons**: More complex logic
-- **When**: Need speed AND accuracy
-
----
 
 ## Future Improvements
 
