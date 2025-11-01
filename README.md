@@ -269,7 +269,7 @@ Outputs:
 
 ## What Worked
 
-✅ **Template library**: 65 templates covering diverse attack types (comprehensive* - *see limitations below)
+✅ **Template library**: 65 templates covering diverse attack types
 ✅ **Flexible test harness**: Supports stubs, real models, multiple detector types
 ✅ **Systematic evaluation**: Proper metrics, per-attack-goal analysis
 ✅ **Reproducible**: Deterministic seeding, JSON output, analysis tools
@@ -393,7 +393,7 @@ Outputs:
 
 ## On Fundamental Limitations (Or: Why This Was Probably Doomed From The Start)
 
-Let me be honest about something: **Building a red team corpus and calling it comprehensive is like trying to ocean-proof a boat by testing it in 200 different puddles.**
+Let me be honest about something: **Building a 200-prompt red team corpus is like trying to ocean-proof a boat by testing it in 200 different puddles.**
 
 ### The Problem
 
@@ -441,7 +441,7 @@ But going from 2% to 63% recall? That's real progress. It won't stop every attac
 Even sophisticated ML detectors struggle with adversarial attacks. 27% recall means 73% of attacks get through. Detection is hard. Attackers have the advantage. Perfect defense is impossible.
 
 **For The Framework**:
-Stress testing revealed critical gaps that wouldn't have been found with standard test datasets. The framework successfully identified distribution mismatch and detector blind spots. It's not comprehensive (can't be), but it's useful.
+Stress testing revealed critical gaps that wouldn't have been found with standard test datasets. The framework successfully identified distribution mismatch and detector blind spots. It's limited in scope (can't cover everything), but it's useful.
 
 **For Future Work**:
 This provides a foundation for iterative improvement. Test on diverse attacks, fix blind spots, re-test, repeat. Red team / blue team forever. The game never ends, but you can get better at playing it.
@@ -480,7 +480,7 @@ MIT License - Free to use, modify, and extend for research and education!
 ---
 
 **Framework Version**: v0.4.0
-**Status**: Comprehensive testing complete
+**Status**: Testing complete
 **Note**: This is experimental research for understanding AI security, not a production security tool.
 
 Built with curiosity, tested with skepticism, documented with honesty. 👾
